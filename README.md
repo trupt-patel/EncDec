@@ -1,5 +1,6 @@
 
 ## Description
+This API will provide encryption of the text with a secure key and IV value using the AES-256-CBC algorithm. This helps any beginner to encrypt and decrypt without using any backend framework. They can do encrypt/decrypt from the UI side.
 
 ## Project setup
 
@@ -21,7 +22,7 @@ $ npm run start:prod
 ```
 
 ## Deploy App
-
+https://enc-dec-nine.vercel.app/
 
 ## How to Deployment your github project
 - Visit the [Vercel](https://vercel.com/) for hosting Nest App.
