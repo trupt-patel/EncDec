@@ -9,21 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EncDecConfiguration = void 0;
+exports.DecryptText = exports.EncryptText = void 0;
 const swagger_1 = require("@nestjs/swagger");
-class EncDecConfiguration {
-    constructor({ Key, IV }) {
-        this.Key = Key;
-        this.IV = IV;
+class EncryptText {
+    constructor({ plainText }) {
+        this.plainText = plainText;
     }
 }
-exports.EncDecConfiguration = EncDecConfiguration;
+exports.EncryptText = EncryptText;
 __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
-], EncDecConfiguration.prototype, "Key", void 0);
+], EncryptText.prototype, "plainText", void 0);
+class DecryptText {
+    constructor({ encryptedData }) {
+        this.encryptedData = encryptedData;
+    }
+}
+exports.DecryptText = DecryptText;
 __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
-], EncDecConfiguration.prototype, "IV", void 0);
+], DecryptText.prototype, "encryptedData", void 0);
 //# sourceMappingURL=enc_dec.dto.js.map

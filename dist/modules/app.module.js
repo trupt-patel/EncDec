@@ -10,12 +10,20 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const enc_dec_module_1 = require("./enc_dec.module");
 const response_service_1 = require("../services/response.service");
+const path_1 = require("path");
+const serve_static_1 = require("@nestjs/serve-static");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [enc_dec_module_1.EncDecModule],
+        imports: [
+            enc_dec_module_1.EncDecModule,
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '..', 'dist', 'node_modules', 'swagger-ui-dist'),
+                serveRoot: '/',
+            }),
+        ],
         controllers: [],
         providers: [response_service_1.ResponseService],
     })

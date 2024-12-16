@@ -1,8 +1,11 @@
 export declare class EncDecService {
-    private encDecInfo;
-    private config;
-    constructor();
-    refreshEncDecConfiguration(): Promise<void>;
-    generateRandomKey(): Promise<string>;
-    generateRandomIV(): Promise<string>;
+    private readonly algorithm;
+    private readonly key;
+    private readonly iv;
+    encryptText({ plainText }: {
+        plainText: string;
+    }): Promise<string | false>;
+    decryptText({ encryptedData }: {
+        encryptedData: string;
+    }): Promise<string | false>;
 }

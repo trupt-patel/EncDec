@@ -1,13 +1,19 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class EncDecConfiguration {
+export class EncryptText {
     @ApiProperty()
-    Key: string;
-    @ApiProperty()
-    IV: string
+    plainText: string;
 
-    constructor( {Key, IV} : {Key: string, IV: string}) {
-        this.Key = Key;
-        this.IV = IV;
+    constructor( {plainText} : {plainText: string}) {
+        this.plainText = plainText;
+    }
+}
+
+export class DecryptText {
+    @ApiProperty()
+    encryptedData: string;
+
+    constructor( {encryptedData} : {encryptedData: string}) {
+        this.encryptedData = encryptedData;
     }
 }

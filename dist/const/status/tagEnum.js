@@ -7,12 +7,6 @@ var EncDecStatusTag;
     EncDecStatusTag["ENCRYPT_FAILED"] = "ENCRYPT_FAILED";
     EncDecStatusTag["DECRYPT_SUCCESS"] = "DECRYPT_SUCCESS";
     EncDecStatusTag["DECRYPT_FAILED"] = "DECRYPT_FAILED";
-    EncDecStatusTag["ENC_DEC_CONFIGURATION_UPDATED_SUCCESS"] = "ENC_DEC_CONFIGURATION_UPDATED_SUCCESS";
-    EncDecStatusTag["ENC_DEC_CONFIGURATION_UPDTAED_FAILED"] = " ENC_DEC_CONFIGURATION_UPDTAED_FAILED";
-    EncDecStatusTag["KEY_GENERATION_SUCCESS"] = "KEY_GENERATION_SUCCESS";
-    EncDecStatusTag["IV_GENERATION_SUCCESS"] = "IV_GENERTION_SUCCESS";
-    EncDecStatusTag["KEY_LENGTH"] = "Key Length at least 32 character";
-    EncDecStatusTag["IV_LENGTH"] = "Iv length at least 16 character";
 })(EncDecStatusTag || (exports.EncDecStatusTag = EncDecStatusTag = {}));
 var CommonStatusTag;
 (function (CommonStatusTag) {

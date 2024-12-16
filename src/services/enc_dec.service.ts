@@ -1,35 +1,33 @@
 import { Injectable } from "@nestjs/common";
-import { readConfigurationJsonFile } from "src/helper/jsonReader";
-import { ConfigurationJSONFileDTO, EncDecDto } from "src/models/configuration";
-import { randomBytes } from 'crypto';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class EncDecService {
+
+    private readonly algorithm = 'aes-256-cbc';
+    private readonly key = crypto.randomBytes(32);
+    private readonly iv = crypto.randomBytes(16); 
     
-    private encDecInfo: EncDecDto;
-    private config: ConfigurationJSONFileDTO;
-
-    constructor() {
-        this.refreshEncDecConfiguration();
-    }
-
-    async refreshEncDecConfiguration()
-    {
-        this.config = readConfigurationJsonFile();
+    async encryptText({ plainText }: {plainText: string}){
         try {
-            const data = readConfigurationJsonFile() as ConfigurationJSONFileDTO;
-            this.encDecInfo = data.enc_dec;
+            const cipher = crypto.createCipheriv(this.algorithm, this.key, this.iv);
+            let encrypted = cipher.update(plainText, 'utf8', 'hex');
+            encrypted += cipher.final('hex');
+            return `${encrypted}:${this.iv.toString('hex')}`;
         } catch (error) {
-            this.encDecInfo = null; 
+            return false
         }
     }
-
-    async generateRandomKey() {
-        return randomBytes(32).toString('hex');
-    }
-
-    async generateRandomIV() {
-        return randomBytes(16).toString('hex');
+    async decryptText({ encryptedData }: {encryptedData: string}){
+        try {
+            const [encrypted, ivHex] = encryptedData.split(':');
+            const decipher = crypto.createDecipheriv(this.algorithm, this.key, Buffer.from(ivHex, 'hex'));
+            let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+            decrypted += decipher.final('utf8');
+            return decrypted;
+        } catch (error) {
+            return false
+        }
     }
 
 }
